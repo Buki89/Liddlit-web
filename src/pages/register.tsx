@@ -71,4 +71,4 @@ const Register: FC<registerProps> = () => {
   );
 };
 
-export default register;
+export default Register;

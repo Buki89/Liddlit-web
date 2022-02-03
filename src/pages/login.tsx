@@ -10,7 +10,7 @@ import { errorToMap } from "../utils/toErrorMap";
 
 type registerProps = {};
 
-const login: FC<registerProps> = () => {
+const Login: FC<registerProps> = () => {
   const [login] = useLoginMutation();
   const router = useRouter();
   return (
@@ -80,4 +80,4 @@ const login: FC<registerProps> = () => {
   );
 };
 
-export default login;
+export default Login;
