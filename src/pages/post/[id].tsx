@@ -1,10 +1,8 @@
 import { Heading } from "@chakra-ui/react";
-import { withUrqlClient } from "next-urql";
 import React, { FC } from "react";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
 import Layout from "../../components/Layout";
 import { useMeQuery } from "../../generated/graphql";
-import { createUrqlClient } from "../../utils/createUrqlClient";
 import { useGetPostFromUrl } from "../../utils/useGetPostFromUrl";
 
 type PostProps = {};

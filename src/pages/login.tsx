@@ -1,14 +1,12 @@
 import { Box, Button, Flex, Link } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
-import { withUrqlClient } from "next-urql";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 import InputField from "../components/InputField";
 import Wrapper from "../components/Wrapper";
 import { MeDocument, MeQuery, useLoginMutation } from "../generated/graphql";
-import { createUrqlClient } from "../utils/createUrqlClient";
 import { errorToMap } from "../utils/toErrorMap";
-import NextLink from "next/link";
 
 type registerProps = {};
 
