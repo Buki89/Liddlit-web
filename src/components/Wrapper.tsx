@@ -8,7 +8,7 @@ type WrapperProps = {
 const Wrapper: FC<WrapperProps> = ({ children, variant }) => {
   return (
     <Box
-      mt={8}
+      mt={4}
       mx="auto"
       maxW={variant === "regular" ? "800px" : "400px"}
       w="100%"
