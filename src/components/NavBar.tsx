@@ -4,24 +4,35 @@ import React, { FC } from "react";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
 import { Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { useApolloClient } from "@apollo/client";
+import styled from "styled-components";
+import Logo from "./Logo";
+
+const Container = styled("div")`
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ccc;
+`;
 
 const NavBar: FC = () => {
   const apolloClient = useApolloClient();
-  const router = useRouter();
   const { data } = useMeQuery({
     skip: isServer(),
   });
   const [logout, { loading: logoutFetching }] = useLogoutMutation();
 
   return (
-    <Flex bg="tan" position="sticky" top={0} zIndex={1} p={4}>
-      <Flex maxW="800px" flex={1} justifyContent="space-between" m="auto">
+    <Container>
+      <Flex flex={1} justifyContent="space-between" m="auto">
         <Box>
           <NextLink href="/">
             <Link>
-              <Heading>LiReddit</Heading>
+              <Heading>
+                <Logo />
+              </Heading>
             </Link>
           </NextLink>
         </Box>
@@ -39,11 +50,6 @@ const NavBar: FC = () => {
             </Box>
           ) : (
             <>
-              <Box mr={5}>
-                <NextLink href="/create-post">
-                  <Button as={Link}>create post</Button>
-                </NextLink>
-              </Box>
               <Box alignItems="center">
                 <Text>{data?.me?.username}</Text>
                 <Button
@@ -61,7 +67,7 @@ const NavBar: FC = () => {
           )}
         </Flex>
       </Flex>
-    </Flex>
+    </Container>
   );
 };
 
