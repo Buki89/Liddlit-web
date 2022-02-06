@@ -1,7 +1,7 @@
 import { Stack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { MeQuery, Post } from "../generated/graphql";
-import PostsListItem from "./PostsListItem";
+import PostListItem from "./PostListItem";
 
 type PostsListProps = {
   posts: Post[] | undefined;
@@ -16,7 +16,7 @@ const PostsList: FC<PostsListProps> = ({ posts, meData }) => {
   return (
     <Stack spacing={4}>
       {posts.map((post) => (
-        <PostsListItem key={post.id} post={post} me={meData?.me} />
+        <PostListItem key={post.id} post={post} me={meData?.me} />
       ))}
     </Stack>
   );
