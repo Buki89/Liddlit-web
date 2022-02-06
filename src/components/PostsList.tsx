@@ -12,6 +12,9 @@ const Container = styled("div")`
   border-radius: 0.25rem;
   display: flex;
   padding: 1rem;
+  :hover {
+    border-color: #898989;
+  }
 `;
 
 type PostsListProps = {
