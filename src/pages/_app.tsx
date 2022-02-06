@@ -1,7 +1,8 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
+import styled from "styled-components";
+import { PaginatedPosts } from "../generated/graphql";
 import theme from "../theme";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { PaginatedPosts, PostsQuery } from "../generated/graphql";
 
 const client = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_URL as string,
@@ -15,8 +16,6 @@ const client = new ApolloClient({
               existing: PaginatedPosts | undefined,
               incoming: PaginatedPosts
             ): PaginatedPosts {
-              console.log("incoming", incoming);
-              console.log("existing", existing);
               return {
                 ...incoming,
                 posts: [...(existing?.posts || []), ...incoming.posts],
