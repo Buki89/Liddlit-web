@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
-import PostsListContainer from "../containers/PostsListContainer";
+import Dashboard from "../containers/Dashboard";
 
 const Index = () => {
   return (
     <Layout variant="regular">
-      <PostsListContainer />
+      <Dashboard />
     </Layout>
   );
 };

@@ -5,7 +5,7 @@ import PostsList from "../components/PostsList";
 import PostsActionBar from "../components/PostSActionBar";
 import { Post, useMeQuery, usePostsQuery } from "../generated/graphql";
 
-const PostsListContainer: VFC = () => {
+const Dashboard: VFC = () => {
   const { data, error, loading, fetchMore, variables } = usePostsQuery({
     variables: {
       limit: 15,
@@ -47,4 +47,4 @@ const PostsListContainer: VFC = () => {
   );
 };
 
-export default PostsListContainer;
+export default Dashboard;
