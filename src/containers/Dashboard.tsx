@@ -4,6 +4,7 @@ import FetchMoreButton from "../components/FetchMoreButton";
 import PostsList from "../components/PostsList";
 import PostsActionBar from "../components/PostSActionBar";
 import { Post, useMeQuery, usePostsQuery } from "../generated/graphql";
+import { Box } from "@chakra-ui/react";
 
 const Dashboard: VFC = () => {
   const { data, error, loading, fetchMore, variables } = usePostsQuery({
@@ -33,7 +34,7 @@ const Dashboard: VFC = () => {
     );
   }
   return (
-    <>
+    <Box width="40rem">
       <CreatePost userName={meData.me.username} />
       <PostsActionBar />
       <PostsList posts={posts} meData={meData} />
@@ -43,7 +44,7 @@ const Dashboard: VFC = () => {
         posts={posts}
         limit={limit}
       />
-    </>
+    </Box>
   );
 };
 
