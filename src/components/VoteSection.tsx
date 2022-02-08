@@ -79,25 +79,33 @@ const VoteSection: FC<VoteSectionProps> = ({ post }) => {
 
   const { id } = post;
 
-  const handleUpVote = useCallback(async () => {
-    await vote({
-      variables: {
-        postId: id,
-        value: 1,
-      },
-      update: (cache) => updateAfterVote(1, id, cache),
-    });
-  }, [vote, id]);
+  const handleUpVote = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      await vote({
+        variables: {
+          postId: id,
+          value: 1,
+        },
+        update: (cache) => updateAfterVote(1, id, cache),
+      });
+    },
+    [vote, id]
+  );
 
-  const handleDownVote = useCallback(async () => {
-    await vote({
-      variables: {
-        postId: id,
-        value: -1,
-      },
-      update: (cache) => updateAfterVote(-1, id, cache),
-    });
-  }, [vote, id]);
+  const handleDownVote = useCallback(
+    async (e) => {
+      e.stopPropagation();
+      await vote({
+        variables: {
+          postId: id,
+          value: -1,
+        },
+        update: (cache) => updateAfterVote(-1, id, cache),
+      });
+    },
+    [vote, id]
+  );
 
   const color = getColor(post.voteStatus);
 
@@ -105,7 +113,6 @@ const VoteSection: FC<VoteSectionProps> = ({ post }) => {
     <Flex
       flexDirection="column"
       alignItems="center"
-      mr={4}
       backgroundColor="#f8f9fa"
       p="0.25rem"
       borderRadius="0.25rem 0 0 0.25rem"
