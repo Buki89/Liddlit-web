@@ -5,14 +5,9 @@ type WrapperProps = {
   variant?: "small" | "regular";
 };
 
-const Wrapper: FC<WrapperProps> = ({ children, variant }) => {
+const Wrapper: FC<WrapperProps> = ({ children }) => {
   return (
-    <Box
-      mt={4}
-      mx="auto"
-      maxW={variant === "regular" ? "800px" : "400px"}
-      w="100%"
-    >
+    <Box mt={4} mx="auto" w="100%">
       {children}
     </Box>
   );
