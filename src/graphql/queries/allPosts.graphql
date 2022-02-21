@@ -1,0 +1,18 @@
+query allPosts($limit: Int!, $offset: Int) {
+  allPosts(limit: $limit, offset: $offset) {
+    hasMore
+    posts {
+      id
+      title
+      text
+      points
+      creatorId
+      createdAt
+      creator {
+        id
+        username
+      }
+      communityId
+    }
+  }
+}
