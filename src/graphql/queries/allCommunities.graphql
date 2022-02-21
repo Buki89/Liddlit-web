@@ -1,0 +1,8 @@
+query allCommunities($ids: [Int!]) {
+  allCommunities(ids: $ids) {
+    id
+    name
+    creatorId
+    createdAt
+  }
+}
