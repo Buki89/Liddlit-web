@@ -1,0 +1,9 @@
+mutation CreateCommunity($name: String!) {
+  createCommunity(name: $name) {
+    id
+    name
+    creatorId
+    createdAt
+    updatedAt
+  }
+}
