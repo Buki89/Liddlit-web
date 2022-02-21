@@ -3,6 +3,5 @@ mutation UpdatePost($text: String!, $title: String!, $id: Int!) {
     id
     title
     text
-    textSnippet
   }
 }
