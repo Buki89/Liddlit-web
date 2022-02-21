@@ -3,3 +3,10 @@ export enum ViewVariant {
   classic = "Classic",
   compact = "Compact",
 }
+
+export enum PostVariant {
+  post = "Post",
+  media = "Images & Video",
+  link = "Link",
+  poll = "Poll",
+}
