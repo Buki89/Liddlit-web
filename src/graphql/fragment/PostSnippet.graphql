@@ -5,10 +5,10 @@ fragment PostSnippet on Post {
   title
   points
   text
-  textSnippet
   voteStatus
   creator {
     id
     username
   }
+  communityId
 }
