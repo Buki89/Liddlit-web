@@ -8,7 +8,7 @@ const Text = styled("p")`
   padding-top: 0.5rem;
 `;
 const Brackets = styled("p")`
-  color: #3398e1;
+  color: #f94502;
   font-size: 2rem;
   :first-child {
     margin-right: -0.25rem;
@@ -20,9 +20,9 @@ const Brackets = styled("p")`
 const Logo: VFC = () => {
   return (
     <Flex alignItems="center">
-      <Brackets>[</Brackets>
+      <Brackets>{"{"}</Brackets>
       <Text>L</Text>
-      <Brackets>]</Brackets>
+      <Brackets>{"}"}</Brackets>
       <Text>iddlit</Text>
     </Flex>
   );
