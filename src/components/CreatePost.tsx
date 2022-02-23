@@ -35,15 +35,14 @@ const CreatePostLink = styled("a")`
 
 type CreatePostProps = {
   avatarUrl?: string;
-  userName: string;
 };
 
-const CreatePost: FC<CreatePostProps> = ({ avatarUrl, userName }) => (
+const CreatePost: FC<CreatePostProps> = ({ avatarUrl }) => (
   <Container>
     <Link href="/user-profile" passHref={true}>
       <Avatar src={avatarUrl} size="sm" />
     </Link>
-    <Link href="/create-post" passHref={true}>
+    <Link href="/submit" passHref={true}>
       <CreatePostLink>Create Post</CreatePostLink>
     </Link>
     <Box mx="1rem">
