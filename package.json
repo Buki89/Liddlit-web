@@ -9,8 +9,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
-    "@chakra-ui/icons": "^1.0.0",
-    "@chakra-ui/react": "^1.4.2",
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@graphql-codegen/typescript-react-apollo": "^3.2.4",
@@ -21,7 +19,6 @@
     "graphql-tag": "^2.12.6",
     "isomorphic-unfetch": "^3.1.0",
     "next": "latest",
-    "next-urql": "^3.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
