@@ -1,50 +1,33 @@
+import { Box, Flex } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { VFC } from "react";
 import CreatePost from "../components/CreatePost";
-import FetchMoreButton from "../components/FetchMoreButton";
-import PostsList from "../components/PostsList";
+import HomeWidget from "../components/HomeWidget";
 import PostsActionBar from "../components/PostSActionBar";
-import { Post, useMeQuery, usePostsQuery } from "../generated/graphql";
-import { Box } from "@chakra-ui/react";
+import PostsList from "../components/PostsList";
+import { useMeQuery } from "../generated/graphql";
 
 const Dashboard: VFC = () => {
-  const { data, error, loading, fetchMore, variables } = usePostsQuery({
-    variables: {
-      limit: 15,
-      cursor: null,
-    },
-    notifyOnNetworkStatusChange: true,
-  });
+  const { data, loading } = useMeQuery();
+  const router = useRouter();
 
-  const limit = variables?.limit;
-
-  const posts = data?.posts.posts as Post[] | undefined;
-
-  const { data: meData } = useMeQuery();
-
-  if (!meData?.me) {
+  if (loading && !data?.me) {
     return <p>loading...</p>;
   }
 
-  if (meData?.me && !loading && !data) {
-    return (
-      <div>
-        <div>you got query failed</div>
-        <div>{error?.message}</div>
-      </div>
-    );
+  if (!loading && !data?.me) {
+    router.push("/login");
   }
+
   return (
-    <Box width="40rem">
-      <CreatePost userName={meData.me.username} />
-      <PostsActionBar />
-      <PostsList posts={posts} meData={meData} />
-      <FetchMoreButton
-        loading={loading}
-        fetchMore={fetchMore}
-        posts={posts}
-        limit={limit}
-      />
-    </Box>
+    <Flex justifyContent="center">
+      <Box width="40rem" mr={6}>
+        <CreatePost />
+        <PostsActionBar />
+        <PostsList meData={data} />
+      </Box>
+      <HomeWidget />
+    </Flex>
   );
 };
 
