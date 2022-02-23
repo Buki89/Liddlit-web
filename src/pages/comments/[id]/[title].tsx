@@ -20,7 +20,7 @@ const Post: VFC = () => {
     return <Layout>loading...</Layout>;
   }
 
-  if (!data?.post) {
+  if (!data?.Post) {
     return (
       <Layout>
         <div>could not find post</div>
@@ -31,12 +31,12 @@ const Post: VFC = () => {
   return (
     <Layout>
       <Container>
-        <Heading>{data.post.title}</Heading>
-        {data?.post?.text}
-        {MeData?.me?.id === data.post.creator.id ? (
+        <Heading>{data.Post.title}</Heading>
+        {data?.Post?.text}
+        {MeData?.me?.id === data.Post.creator.id ? (
           <EditDeletePostButtons
-            id={data.post.id}
-            creatorId={data.post.creator.id}
+            id={data.Post.id}
+            creatorId={data.Post.creator.id}
           />
         ) : null}
       </Container>
