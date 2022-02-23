@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import React, { FC, useState } from "react";
 import InputField from "../components/InputField";
@@ -30,14 +30,7 @@ const ForgotPassword: FC<ForgotPasswordProps> = () => {
                 placehodler="Email"
                 type="email"
               />
-              <Button
-                type="submit"
-                colorScheme="teal"
-                mt={4}
-                isLoading={isSubmitting}
-              >
-                forgot password
-              </Button>
+              <Button type="submit">forgot password</Button>
             </Form>
           )
         }

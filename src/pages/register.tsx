@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
@@ -21,19 +21,10 @@ const Register: FC<registerProps> = () => {
             variables: {
               options: values,
             },
-            update: (cache, { data }) => {
-              cache.writeQuery<MeQuery>({
-                query: MeDocument,
-                data: {
-                  __typename: "Query",
-                  me: data?.register.user,
-                },
-              });
-            },
           });
-          if (responce.data?.register.errors) {
-            setErrors(errorToMap(responce.data.register.errors));
-          } else if (responce.data?.register.user) {
+          if (responce?.data?.register?.errors) {
+            // setErrors(errorToMap(responce.data.register.errors));
+          } else if (responce?.data?.register?.user) {
             router.push("/");
           }
         }}
@@ -56,14 +47,7 @@ const Register: FC<registerProps> = () => {
                 type="password"
               />
             </Box>
-            <Button
-              type="submit"
-              colorScheme="teal"
-              mt={4}
-              isLoading={isSubmitting}
-            >
-              register
-            </Button>
+            <Button type="submit">register</Button>
           </Form>
         )}
       </Formik>

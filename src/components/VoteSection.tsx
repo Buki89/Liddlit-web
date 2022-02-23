@@ -1,10 +1,5 @@
 import { ApolloCache, gql } from "@apollo/client";
-import {
-  Box,
-  Flex,
-  IconButton as IconButtonBase,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Typography, IconButton as IconButtonBase } from "@mui/material";
 import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 import {
@@ -131,33 +126,30 @@ const VoteSection: FC<VoteSectionProps> = ({ post }) => {
   const color = getColor(post.voteStatus);
 
   return (
-    <Flex
+    <Box
+      display="flex"
       flexDirection="column"
       alignItems="center"
-      backgroundColor="#f8f9fa"
       p="0.25rem"
       borderRadius="0.25rem 0 0 0.25rem"
     >
-      <IconButton
-        onClick={handleUpVote}
-        variant="solid"
-        aria-label="up-vote"
-        icon={<ArrowIcon voted={post.voteStatus === 1} />}
-        size="xs"
-      />
+      <IconButton onClick={handleUpVote} aria-label="up-vote">
+        <ArrowIcon voted={post.voteStatus === 1} />
+      </IconButton>
       <Box>
-        <Text fontSize="0.875rem" my="-0.25rem" fontWeight={600} color={color}>
+        <Typography
+          fontSize="0.875rem"
+          my="-0.25rem"
+          fontWeight={600}
+          color={color}
+        >
           {post.points}
-        </Text>
+        </Typography>
       </Box>
-      <IconButton
-        onClick={handleDownVote}
-        variant="solid"
-        aria-label="down-vote"
-        icon={<ArrowIcon rotated={true} voted={post.voteStatus === -1} />}
-        size="xs"
-      />
-    </Flex>
+      <IconButton onClick={handleDownVote} aria-label="down-vote">
+        <ArrowIcon rotated={true} voted={post.voteStatus === -1} />
+      </IconButton>
+    </Box>
   );
 };
 

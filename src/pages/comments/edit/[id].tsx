@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
@@ -27,7 +27,7 @@ const EditPost: FC<EditPostProps> = () => {
     return <Layout>loading...</Layout>;
   }
 
-  if (!data?.post) {
+  if (!data?.Post) {
     return (
       <Layout>
         <div>could not find post</div>
@@ -38,27 +38,20 @@ const EditPost: FC<EditPostProps> = () => {
   return (
     <Layout variant="small">
       <Formik
-        initialValues={{ title: data.post.title, text: data.post.text }}
-        onSubmit={async (values) => {
-          await updatePost({ variables: { id: intId, ...values } });
+        initialValues={{ title: data.Post.title, text: data.Post.text }}
+        onSubmit={async ({ text, title }) => {
+          await updatePost({ variables: { id: intId, title, text: "" } });
           router.back();
         }}
       >
-        {({ isSubmitting }) => (
+        {() => (
           <Form>
             <InputField name="title" label="Title" placehodler="title" />
             <Box mt={4}>
               <InputField name="text" label="Body" placehodler="text..." />
             </Box>
 
-            <Button
-              type="submit"
-              colorScheme="teal"
-              mt={4}
-              isLoading={isSubmitting}
-            >
-              update post
-            </Button>
+            <Button type="submit">update post</Button>
           </Form>
         )}
       </Formik>

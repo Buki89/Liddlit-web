@@ -1,9 +1,9 @@
-import { Avatar, Box } from "@chakra-ui/react";
 import React, { FC } from "react";
 import styled from "styled-components";
 import { IoImageOutline } from "react-icons/io5";
 import { BsLink45Deg } from "react-icons/bs";
 import Link from "next/link";
+import { Avatar, Box } from "@mui/material";
 
 const Container = styled("div")`
   background-color: #fff;
@@ -40,7 +40,7 @@ type CreatePostProps = {
 const CreatePost: FC<CreatePostProps> = ({ avatarUrl }) => (
   <Container>
     <Link href="/user-profile" passHref={true}>
-      <Avatar src={avatarUrl} size="sm" />
+      <Avatar src={avatarUrl} sizes="sm" />
     </Link>
     <Link href="/submit" passHref={true}>
       <CreatePostLink>Create Post</CreatePostLink>

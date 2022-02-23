@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Typography } from "@mui/material";
 import React, { FC, useState } from "react";
 import { BsFileText, BsLink45Deg } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
@@ -38,36 +38,36 @@ const RadioPostVariant: FC<SelectPostVariantProps> = () => {
     setActiveItem(value);
   };
   return (
-    <Flex>
+    <Box display="flex">
       <Item
         active={activeItem === PostVariant.post}
         onClick={handleClick(PostVariant.post)}
       >
         <BsFileText size="1.5rem" />
-        <Text ml="0.45rem">{PostVariant.post}</Text>
+        <Typography ml="0.45rem">{PostVariant.post}</Typography>
       </Item>
       <Item
         active={activeItem === PostVariant.media}
         onClick={handleClick(PostVariant.media)}
       >
         <IoImageOutline size="1.5rem" />
-        <Text ml="0.45rem">{PostVariant.media}</Text>
+        <Typography ml="0.45rem">{PostVariant.media}</Typography>
       </Item>
       <Item
         active={activeItem === PostVariant.link}
         onClick={handleClick(PostVariant.link)}
       >
         <BsLink45Deg size="1.5rem" />
-        <Text ml="0.45rem">{PostVariant.link}</Text>
+        <Typography ml="0.45rem">{PostVariant.link}</Typography>
       </Item>
       <Item
         active={activeItem === PostVariant.poll}
         onClick={handleClick(PostVariant.poll)}
       >
         <RiListOrdered size="1.5rem" />
-        <Text ml="0.45rem">{PostVariant.poll}</Text>
+        <Typography ml="0.45rem">{PostVariant.poll}</Typography>
       </Item>
-    </Flex>
+    </Box>
   );
 };
 

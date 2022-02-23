@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Typography } from "@mui/material";
 import React, { VFC } from "react";
 import styled from "styled-components";
 import EditDeletePostButtons from "../../../components/EditDeletePostButtons";
@@ -31,7 +31,7 @@ const Post: VFC = () => {
   return (
     <Layout>
       <Container>
-        <Heading>{data.Post.title}</Heading>
+        <Typography variant="h2">{data.Post.title}</Typography>
         {data?.Post?.text}
         {MeData?.me?.id === data.Post.creator.id ? (
           <EditDeletePostButtons

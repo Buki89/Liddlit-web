@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Typography } from "@mui/material";
 import React, { useCallback, VFC } from "react";
 import styled from "styled-components";
 import { ViewVariant } from "../types";
@@ -33,7 +33,9 @@ const ViewVariantItem: VFC<ViewVariantItemProps> = ({
   return (
     <ItemContainer onClick={handleClick}>
       {icon}
-      <Text color={active ? "#1379d3" : "#878a8c"}>{viewVariant}</Text>
+      <Typography color={active ? "#1379d3" : "#878a8c"}>
+        {viewVariant}
+      </Typography>
     </ItemContainer>
   );
 };

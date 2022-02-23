@@ -1,4 +1,4 @@
-import { Button, Flex, Stack } from "@chakra-ui/react";
+import { Box, Button, Stack } from "@mui/material";
 import React, { FC, useCallback } from "react";
 import { MeQuery, useAllPostsQuery } from "../generated/graphql";
 import PostListItem from "./PostListItem";
@@ -53,17 +53,11 @@ const PostsList: FC<PostsListProps> = ({ meData }) => {
         })}
       </Stack>
       {data?.allPosts?.hasMore && (
-        <Flex>
-          <Button
-            onClick={handleClick}
-            isLoading={loading}
-            margin="auto "
-            my={8}
-            type="button"
-          >
+        <Box display="flex">
+          <Button onClick={handleClick} type="button">
             load more
           </Button>
-        </Flex>
+        </Box>
       )}
     </>
   );

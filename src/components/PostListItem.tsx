@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Typography } from "@mui/material";
 import NextLink from "next/link";
 import React, { FC } from "react";
 import styled, { keyframes } from "styled-components";
@@ -53,10 +53,10 @@ const PostListItem: FC<PostListItemProps> = ({ post, me }) => {
             community={post.community.name}
           />
           <Box flex={1} px="0.5rem">
-            <Text fontSize="1.125rem" fontWeight={600}>
+            <Typography fontSize="1.125rem" fontWeight={600}>
               {post.title}
-            </Text>
-            <Text fontSize="0.875rem">{post.text}</Text>
+            </Typography>
+            <Typography fontSize="0.875rem">{post.text}</Typography>
           </Box>
           <PostListItemFooter post={post} me={me} />
         </div>

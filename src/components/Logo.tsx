@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box } from "@mui/material";
 import React, { VFC } from "react";
 import styled from "styled-components";
 
@@ -19,12 +19,12 @@ const Brackets = styled("p")`
 
 const Logo: VFC = () => {
   return (
-    <Flex alignItems="center">
+    <Box display="flex" alignItems="center">
       <Brackets>{"{"}</Brackets>
       <Text>L</Text>
       <Brackets>{"}"}</Brackets>
       <Text>iddlit</Text>
-    </Flex>
+    </Box>
   );
 };
 

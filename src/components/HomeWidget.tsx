@@ -1,9 +1,9 @@
 import React, { FC, useCallback, useState } from "react";
 import styled from "styled-components";
-import { Link, Text } from "@chakra-ui/react";
 import Button from "./Button";
 import NextLink from "next/link";
 import CreateCommunityModal from "./CreateCommunityModal";
+import { Link, Typography } from "@mui/material";
 
 const Container = styled("div")`
   border: 1px solid #ccc;
@@ -27,21 +27,15 @@ const HomeWidget: FC<HomeWidgetProps> = () => {
 
   return (
     <Container>
-      <Text fontSize="1rem" fontWeight={500} mb="1rem">
+      <Typography fontSize="1rem" fontWeight={500} mb="1rem">
         Home
-      </Text>
-      <Text fontSize="0.875rem">
+      </Typography>
+      <Typography fontSize="0.875rem">
         Your personal Liddlit frontpage. Come here to check in with your
         favorite communities.
-      </Text>
+      </Typography>
       <NextLink href={"/submit"} passHref={true}>
-        <Button
-          as={Link}
-          variant="link"
-          customVariant="primary"
-          isFullWidth={true}
-          my={2}
-        >
+        <Button customVariant="primary" LinkComponent={Link}>
           Create Post
         </Button>
       </NextLink>

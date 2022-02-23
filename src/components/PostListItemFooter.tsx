@@ -1,4 +1,3 @@
-import { Button, Flex, Link } from "@chakra-ui/react";
 import React, { VFC } from "react";
 import { Post, User } from "../generated/graphql";
 import { GoComment } from "react-icons/go";
@@ -6,6 +5,7 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiSave } from "react-icons/bi";
 import NextLink from "next/link";
+import { Box, Button, Link } from "@mui/material";
 
 type PostListItemFooterProps = {
   me?: Pick<User, "__typename" | "id" | "username"> | null;
@@ -15,49 +15,31 @@ type PostListItemFooterProps = {
 
 const PostListItemFooter: VFC<PostListItemFooterProps> = ({ me, post }) => {
   return (
-    <Flex color="#878a8c" mt={2}>
+    <Box display="flex" color="#878a8c" mt={2}>
       <NextLink href={`/comments/${post.id}/${post.title}/`}>
         <Button
-          size="sm"
-          variant="ghost"
-          fontSize="0.85rem"
-          as={Link}
-          leftIcon={<GoComment fontSize="1.25rem" />}
+          startIcon={<GoComment fontSize="1.25rem" />}
+          LinkComponent={Link}
         >
           {`${100} Comments`}
         </Button>
       </NextLink>
-      <Button
-        size="sm"
-        variant="ghost"
-        fontSize="0.85rem"
-        leftIcon={<BiSave fontSize="1.25rem" />}
-      >
-        Save
-      </Button>
+      <Button startIcon={<BiSave fontSize="1.25rem" />}>Save</Button>
       {me?.id === post?.creator?.id ? (
-        <Flex>
+        <Box display="flex">
           <Button
-            size="sm"
-            variant="ghost"
-            fontSize="0.85rem"
-            leftIcon={
+            startIcon={
               <MdOutlineModeEditOutline fill="#878a8c" fontSize="1.25rem" />
             }
           >
             Edit Post
           </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            fontSize="0.85rem"
-            leftIcon={<AiOutlineDelete fontSize="1.25rem" />}
-          >
+          <Button startIcon={<AiOutlineDelete fontSize="1.25rem" />}>
             Delete
           </Button>
-        </Flex>
+        </Box>
       ) : null}
-    </Flex>
+    </Box>
   );
 };
 

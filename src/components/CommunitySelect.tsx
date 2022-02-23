@@ -1,4 +1,5 @@
-import { Box, Progress, Select } from "@chakra-ui/react";
+import { Select } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { FC } from "react";
 import useCommunitySelect from "../hooks";
 
@@ -13,14 +14,14 @@ const CommunitySelect: FC<CommunitySelectProps> = ({ onChange }) => {
     <>
       {loading ? (
         <Box mb="1rem" py="0.875rem" pl="1rem">
-          <Progress
+          {/* <Progress
             size="md"
             colorScheme="messenger"
             width="14rem"
             isIndeterminate={true}
             border="1px solid #1379d3"
             borderRadius="1rem"
-          />
+          /> */}
         </Box>
       ) : (
         <Select
@@ -29,13 +30,12 @@ const CommunitySelect: FC<CommunitySelectProps> = ({ onChange }) => {
               ? "you have no followed communities"
               : "Choose a community"
           }
-          mb={2}
-          width="15rem"
-          backgroundColor="white"
-          fontSize="1.15rem"
-          onChange={onChange}
+          // width="15rem"
+          // backgroundColor="#000"
+          // fontSize="1.15rem"
+          // onChange={onChange}
           disabled={!choices && !loading}
-          isLoading={true}
+          // isLoading={true}
         >
           {!choices
             ? null

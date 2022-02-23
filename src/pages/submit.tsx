@@ -1,19 +1,18 @@
-import { Box, Divider, Heading } from "@chakra-ui/react";
+import { Box, Typography, Divider } from "@mui/material";
 import { NextPage } from "next";
-import React, { useCallback, useState } from "react";
+import { useState, useCallback } from "react";
 import styled from "styled-components";
 import CommunitySelect from "../components/CommunitySelect";
 import CreatePostForm from "../components/CreatePostForm";
 import Layout from "../components/Layout";
 import RadioPostVariant from "../components/RadioPostVariant";
-import { useIsAuth } from "../hooks/useIsAuth";
 
-const Container = styled("div")`
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
-`;
+// const Container = styled("div")`
+//   background-color: #fff;
+//   display: flex;
+//   flex-direction: column;
+//   border-radius: 0.5rem;
+// `;
 
 const Submit: NextPage = () => {
   // useIsAuth();
@@ -38,13 +37,13 @@ const Submit: NextPage = () => {
         flexDirection="column"
         m="0 auto"
       >
-        <Heading size="md">Create Post</Heading>
-        <Divider borderColor="#fff" borderWidth="1px" my={4} />
+        <Typography variant="h2">Create Post</Typography>
+        <Divider />
         <CommunitySelect onChange={handleChange} />
-        <Container>
+        <Box>
           <RadioPostVariant />
           <CreatePostForm selectedCommunity={selectedCommunity} />
-        </Container>
+        </Box>
       </Box>
     </Layout>
   );

@@ -1,12 +1,11 @@
-import { Box, Button, Flex, Heading, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React, { FC } from "react";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { isServer } from "../utils/isServer";
-import { Text } from "@chakra-ui/react";
 import { useApolloClient } from "@apollo/client";
 import styled from "styled-components";
 import Logo from "./Logo";
+import { Box, Button, Link, Typography } from "@mui/material";
 
 const Container = styled("div")`
   background-color: #fff;
@@ -26,47 +25,45 @@ const NavBar: FC = () => {
 
   return (
     <Container>
-      <Flex flex={1} justifyContent="space-between" m="auto">
+      <Box display="flex" flex={1} justifyContent="space-between" m="auto">
         <Box>
           <NextLink href="/">
             <Link>
-              <Heading>
+              <Typography variant="h2">
                 <Logo />
-              </Heading>
+              </Typography>
             </Link>
           </NextLink>
         </Box>
-        <Flex alignItems="center">
+        <Box display="flex" alignItems="center">
           {!data?.me ? (
             <Box>
               <NextLink href="/login">
-                <Link color="white" mr={2}>
+                <Link color="#fff" mr={2}>
                   login
                 </Link>
               </NextLink>
               <NextLink href="register">
-                <Link color="white">register</Link>
+                <Link color="#fff">register</Link>
               </NextLink>
             </Box>
           ) : (
             <>
               <Box alignItems="center">
-                <Text>{data?.me?.username}</Text>
+                <Typography variant="body1">{data?.me?.username}</Typography>
                 <Button
-                  variant="link"
                   onClick={async () => {
                     await logout();
                     await apolloClient.resetStore();
                   }}
-                  isLoading={logoutFetching}
                 >
                   logout
                 </Button>
               </Box>
             </>
           )}
-        </Flex>
-      </Flex>
+        </Box>
+      </Box>
     </Container>
   );
 };

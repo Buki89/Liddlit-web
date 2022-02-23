@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import { Link, Button, Box } from "@mui/material";
 import { Form, Formik } from "formik";
 import { NextPage } from "next";
 import NextLink from "next/link";
@@ -46,23 +46,16 @@ const ChangePassword: NextPage = () => {
               type="password"
             />
             {errorToken ? (
-              <Flex>
+              <Box display="flex">
                 <Box mr={2} color="red">
                   {errorToken}
                 </Box>
                 <NextLink href="/forgot-password">
                   <Link>click here to get a new one</Link>
                 </NextLink>
-              </Flex>
+              </Box>
             ) : null}
-            <Button
-              type="submit"
-              colorScheme="teal"
-              mt={4}
-              isLoading={isSubmitting}
-            >
-              change password
-            </Button>
+            <Button type="submit">change password</Button>
           </Form>
         )}
       </Formik>

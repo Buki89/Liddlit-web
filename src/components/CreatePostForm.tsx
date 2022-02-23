@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Textarea } from "@chakra-ui/react";
+import { Box, Button, Input, TextareaAutosize } from "@mui/material";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import React, { VFC } from "react";
@@ -33,37 +33,34 @@ const CreatePostForm: VFC<CreatePostFormProps> = ({ selectedCommunity }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Flex p={4} flexDirection="column">
+      <Box display="flex" p={4} flexDirection="column">
         <Input
           placeholder="Title"
           type="text"
           name="title"
-          mb={2}
-          _focus={{ borderColor: "black" }}
+          // _focus={{ borderColor: "black" }}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.title}
         />
-        <Textarea
+        <TextareaAutosize
           placeholder="Text (optional)"
           name="text"
-          _focus={{ borderColor: "black" }}
+          // _focus={{ borderColor: "black" }}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.text}
         />
         <Button
           type="submit"
-          colorScheme="teal"
-          mt={4}
-          isLoading={formik.isSubmitting || loading}
-          backgroundColor="blue"
-          _hover={{ backgroundColor: "lighterBlue" }}
+          // isLoading={formik.isSubmitting || loading}
+          // backgroundColor="blue"
+          // _hover={{ backgroundColor: "lighterBlue" }}
           disabled={!formik.values.title || !selectedCommunity}
         >
           Post
         </Button>
-      </Flex>
+      </Box>
     </form>
   );
 };

@@ -1,12 +1,4 @@
-import {
-  Divider,
-  Modal,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-} from "@chakra-ui/react";
+import { Box, Modal } from "@mui/material";
 import { Form, Formik } from "formik";
 import React, { VFC } from "react";
 import { useCreateCommunityMutation } from "../generated/graphql";
@@ -25,12 +17,9 @@ const CreateCommunityModal: VFC<CreateCommunityModalProps> = ({
   const [createCommunity] = useCreateCommunityMutation();
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent p={2}>
-        <ModalHeader>Create a community</ModalHeader>
-        <ModalCloseButton />
-        <Divider mb={2} />
+    <Modal open={isOpen} onClose={onClose}>
+      <Box>
+        Create a community
         <Formik
           initialValues={{ name: "" }}
           onSubmit={async (values) => {
@@ -44,22 +33,16 @@ const CreateCommunityModal: VFC<CreateCommunityModalProps> = ({
           {({ isSubmitting }) => (
             <Form>
               <InputField name="name" label="Name" placehodler="name" />
-              <ModalFooter>
-                <Button customVariant="secondary" mr={3} onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  customVariant="primary"
-                  isLoading={isSubmitting}
-                >
-                  Create Community
-                </Button>
-              </ModalFooter>
+              <Button customVariant="secondary" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit" customVariant="primary">
+                Create Community
+              </Button>
             </Form>
           )}
         </Formik>
-      </ModalContent>
+      </Box>
     </Modal>
   );
 };

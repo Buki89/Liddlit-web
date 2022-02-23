@@ -1,5 +1,5 @@
+import { Box, Divider } from "@mui/material";
 import React, { useCallback, useState, VFC } from "react";
-import { Box as Container, Divider } from "@chakra-ui/react";
 import { VscChevronDown } from "react-icons/vsc";
 import styled from "styled-components";
 import { ViewVariant } from "../types";
@@ -60,12 +60,7 @@ const SelectViewVariant: VFC = () => {
   );
 
   return (
-    <Container
-      position="relative"
-      display="flex"
-      flex="1"
-      justifyContent="flex-end"
-    >
+    <Box position="relative" display="flex" flex="1" justifyContent="flex-end">
       <Badge onClick={openMenu}>
         {CurrentViewIcon}
         <VscChevronDown color="#878a8c" />
@@ -96,7 +91,7 @@ const SelectViewVariant: VFC = () => {
           active={ViewVariant.compact === viewVariant}
         />
       </Menu>
-    </Container>
+    </Box>
   );
 };
 

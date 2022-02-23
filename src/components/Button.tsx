@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   Button as ButtonBase,
   ButtonProps as ButtonBaseProps,
-} from "@chakra-ui/react";
+} from "@mui/material";
 
 type Variant = "primary" | "secondary";
 
@@ -31,12 +31,7 @@ type ButtonProps = {
   customVariant: Variant;
 } & ButtonBaseProps;
 
-const Button: FC<ButtonProps> = ({
-  children,
-  customVariant,
-  isFullWidth,
-  ...rest
-}) => {
+const Button: FC<ButtonProps> = ({ children, customVariant, ...rest }) => {
   return (
     <StyledButton {...rest} $variant={customVariant}>
       {children}

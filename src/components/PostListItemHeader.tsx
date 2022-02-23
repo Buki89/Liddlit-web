@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Box, Link, Typography } from "@mui/material";
 import { format } from "date-fns";
 import NextLink from "next/link";
 import React, { FC } from "react";
@@ -15,7 +15,7 @@ const PostListItemHeader: FC<PostListItemHeaderProps> = ({
   createdAt,
 }) => {
   return (
-    <Flex fontSize="0.875rem" color="#787c7e" m="0.25rem 0.5rem">
+    <Box display="flex" fontSize="0.875rem" color="#787c7e" m="0.25rem 0.5rem">
       <NextLink href={`c/${community}/`}>
         <Link
           fontWeight={700}
@@ -23,12 +23,12 @@ const PostListItemHeader: FC<PostListItemHeaderProps> = ({
           color="#000"
         >{`c/${community}`}</Link>
       </NextLink>
-      <Text mr={1}>Posted by</Text>
+      <Typography mr={1}>Posted by</Typography>
       <NextLink href={`user/${creator}`}>
         <Link mr="0.5rem">{`u/${creator}/`}</Link>
       </NextLink>
-      <Text>{format(new Date(createdAt), "LLL d")}</Text>
-    </Flex>
+      <Typography>{format(new Date(createdAt), "LLL d")}</Typography>
+    </Box>
   );
 };
 

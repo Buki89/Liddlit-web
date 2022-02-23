@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link } from "@chakra-ui/react";
+import { Box, Button, Link } from "@mui/material";
 import { Form, Formik } from "formik";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -23,26 +23,16 @@ const Login: FC<registerProps> = () => {
               password: values.password,
               usernameOrEmail: values.password,
             },
-            update: (cache, { data }) => {
-              cache.writeQuery<MeQuery>({
-                query: MeDocument,
-                data: {
-                  __typename: "Query",
-                  me: data?.login.user,
-                },
-              });
-              cache.evict({ fieldName: "posts:{}" });
-            },
           });
-          if (responce.data?.login.errors) {
-            setErrors(errorToMap(responce.data.login.errors));
-          } else if (responce.data?.login.user) {
-            if (typeof router.query.next === "string") {
-              router.push(router.query.next);
-            } else {
-              router.push("/");
-            }
-          }
+          // if (responce.data?.login.errors) {
+          //   setErrors(errorToMap(responce.data.login.errors));
+          // } else if (responce.data?.login.user) {
+          //   if (typeof router.query.next === "string") {
+          //     router.push(router.query.next);
+          //   } else {
+          //     router.push("/");
+          //   }
+          // }
         }}
       >
         {({ isSubmitting }) => (
@@ -60,19 +50,12 @@ const Login: FC<registerProps> = () => {
                 type="password"
               />
             </Box>
-            <Flex mt={2}>
+            <Box display="flex" mt={2}>
               <NextLink href="/forgot-password">
                 <Link ml="auto">forgot password?</Link>
               </NextLink>
-            </Flex>
-            <Button
-              type="submit"
-              colorScheme="teal"
-              mt={4}
-              isLoading={isSubmitting}
-            >
-              login
-            </Button>
+            </Box>
+            <Button type="submit">login</Button>
           </Form>
         )}
       </Formik>

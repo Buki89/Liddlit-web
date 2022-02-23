@@ -1,13 +1,13 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box } from "@mui/material";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { VFC } from "react";
 import CreatePost from "../components/CreatePost";
 import HomeWidget from "../components/HomeWidget";
 import PostsActionBar from "../components/PostSActionBar";
 import PostsList from "../components/PostsList";
 import { useMeQuery } from "../generated/graphql";
 
-const Dashboard: VFC = () => {
+const Dashboard: NextPage = () => {
   const { data, loading } = useMeQuery();
   const router = useRouter();
 
@@ -20,14 +20,14 @@ const Dashboard: VFC = () => {
   }
 
   return (
-    <Flex justifyContent="center">
+    <Box display="flex" justifyContent="center">
       <Box width="40rem" mr={6}>
         <CreatePost />
         <PostsActionBar />
         <PostsList meData={data} />
       </Box>
       <HomeWidget />
-    </Flex>
+    </Box>
   );
 };
 
