@@ -1,4 +1,5 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
+import { format } from "date-fns";
 import NextLink from "next/link";
 import React, { FC } from "react";
 
@@ -26,7 +27,7 @@ const PostListItemHeader: FC<PostListItemHeaderProps> = ({
       <NextLink href={`user/${creator}`}>
         <Link mr="0.5rem">{`u/${creator}/`}</Link>
       </NextLink>
-      <Text>{createdAt}</Text>
+      <Text>{format(new Date(createdAt), "LLL d")}</Text>
     </Flex>
   );
 };
