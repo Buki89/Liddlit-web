@@ -1,16 +1,30 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Post, User } from "../generated/graphql";
-import EditDeletePostButtons from "./EditDeletePostButtons";
+import PostListItemFooter from "./PostListItemFooter";
+import PostListItemHeader from "./PostListItemHeader";
 import VoteSection from "./VoteSection";
+
+const rotate = keyframes`
+  from {
+    /* transform: scale(0); */
+		opacity: 0;
+  }
+
+  to {
+    /* transform: scale(1); */
+		opacity: 1;	
+  }
+`;
 
 const Container = styled("div")`
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   display: flex;
+  animation: ${rotate} 0.5s linear;
   :hover {
     border-color: #898989;
   }
@@ -25,25 +39,29 @@ const PostListItem: FC<PostListItemProps> = ({ post, me }) => {
   if (!post) {
     return null;
   }
-
   return (
-    <Container key={post.id}>
-      <VoteSection post={post} />
-      <Box flex={1} p="0.5rem">
-        <NextLink href="/post/[id]" as={`/post/${post.id}`}>
-          <Heading fontSize="xl">{post.title}</Heading>
-        </NextLink>
-        <Text>Posted by {post.creator.username}</Text>
-        <Flex align="center">
-          <Text flex={1} mt={4}>
-            {post.textSnippet}
-          </Text>
-          {me?.id === post.creator.id ? (
-            <EditDeletePostButtons id={post.id} creatorId={post.creator.id} />
-          ) : null}
-        </Flex>
-      </Box>
-    </Container>
+    <NextLink
+      href="/comments/[id]/[title]"
+      as={`/comments/${post.id}/${post.title.toLowerCase()}/`}
+    >
+      <Container key={post.id}>
+        <VoteSection post={post} />
+        <div>
+          <PostListItemHeader
+            createdAt={post.createdAt}
+            creator={post.creator.username}
+            community={post.community.name}
+          />
+          <Box flex={1} px="0.5rem">
+            <Text fontSize="1.125rem" fontWeight={600}>
+              {post.title}
+            </Text>
+            <Text fontSize="0.875rem">{post.text}</Text>
+          </Box>
+          <PostListItemFooter post={post} me={me} />
+        </div>
+      </Container>
+    </NextLink>
   );
 };
 
