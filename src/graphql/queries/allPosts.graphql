@@ -8,11 +8,15 @@ query allPosts($limit: Int!, $offset: Int) {
       points
       creatorId
       createdAt
+      voteStatus
       creator {
         id
         username
       }
-      communityId
+      community {
+        id
+        name
+      }
     }
   }
 }
