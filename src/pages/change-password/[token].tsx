@@ -6,12 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import InputField from "../../components/InputField";
 import Wrapper from "../../components/Wrapper";
-import {
-  MeDocument,
-  MeQuery,
-  useChangePasswordMutation,
-} from "../../generated/graphql";
-import { errorToMap } from "../../utils/toErrorMap";
+import { useChangePasswordMutation } from "../../generated/graphql";
 
 const ChangePassword: NextPage = () => {
   const router = useRouter();
@@ -30,25 +25,16 @@ const ChangePassword: NextPage = () => {
                   ? router.query.token
                   : "",
             },
-            update: (cache, { data }) => {
-              cache.writeQuery<MeQuery>({
-                query: MeDocument,
-                data: {
-                  __typename: "Query",
-                  me: data?.changePassword.user,
-                },
-              });
-            },
           });
-          if (responce.data?.changePassword.errors) {
-            const errorMap = errorToMap(responce.data.changePassword.errors);
-            if ("token" in errorMap) {
-              setErrorToken(errorMap.token);
-            }
-            setErrors(errorMap);
-          } else if (responce.data?.changePassword.user) {
-            router.push("/");
-          }
+          // if (responce?.data?.changePassword?.errors) {
+          //   const errorMap = errorToMap(responce?.data?.changePassword?.errors);
+          //   if ("token" in errorMap) {
+          //     setErrorToken(errorMap.token);
+          //   }
+          //   setErrors(errorMap);
+          // } else if (responce.data?.changePassword.user) {
+          //   router.push("/");
+          // }
         }}
       >
         {({ isSubmitting }) => (
