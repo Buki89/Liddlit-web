@@ -77,34 +77,55 @@ type VoteSectionProps = {
 const VoteSection: FC<VoteSectionProps> = ({ post }) => {
   const [vote] = useVoteMutation();
 
-  const { id } = post;
+  const { id, voteStatus } = post;
 
   const handleUpVote = useCallback(
     async (e) => {
       e.stopPropagation();
-      await vote({
-        variables: {
-          postId: id,
-          value: 1,
-        },
-        update: (cache) => updateAfterVote(1, id, cache),
-      });
+      if (voteStatus === 1) {
+        await vote({
+          variables: {
+            postId: id,
+            value: 0,
+          },
+          update: (cache) => updateAfterVote(-1, id, cache),
+        });
+      } else {
+        await vote({
+          variables: {
+            postId: id,
+            value: 1,
+          },
+          update: (cache) => updateAfterVote(1, id, cache),
+        });
+      }
     },
-    [vote, id]
+    [vote, id, voteStatus]
   );
 
   const handleDownVote = useCallback(
     async (e) => {
       e.stopPropagation();
-      await vote({
-        variables: {
-          postId: id,
-          value: -1,
-        },
-        update: (cache) => updateAfterVote(-1, id, cache),
-      });
+
+      if (voteStatus === -1) {
+        await vote({
+          variables: {
+            postId: id,
+            value: 0,
+          },
+          update: (cache) => updateAfterVote(1, id, cache),
+        });
+      } else {
+        await vote({
+          variables: {
+            postId: id,
+            value: -1,
+          },
+          update: (cache) => updateAfterVote(-1, id, cache),
+        });
+      }
     },
-    [vote, id]
+    [vote, id, voteStatus]
   );
 
   const color = getColor(post.voteStatus);
